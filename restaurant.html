@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Normalize.css for better cross-browser consistency -->
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <title>Restaurant Info</title>
+</head>
+
+<body class="details">
+  <header>
+    <nav>
+      <h1><a href="/">Restaurant Reviews</a></h1>
+    </nav>
+    <ul class="breadcrumb" >
+      <li><a href="/">Home</a></li>
+    </ul>
+  </header>
+
+  <main>
+    <section class="restaurant-container">
+      <h2 class="restaurant-name"></h2>
+      <picture class="restaurant-img">
+      </picture>
+      <p class="restaurant-cuisine"></p>
+      <section class="restaurant-info-container">
+        <p class="restaurant-address"></p>
+        <table class="restaurant-hours"></table>
+      </section>
+    </section>
+
+    <section class="map-container">
+      <div class="map" role="restaurant map"></div>
+    </section>
+
+    <section class="reviews-container">
+      <h2>Reviews</h2>
+      <ul class="reviews-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+
+  <!-- Database helpers -->
+  <script type="text/javascript" src="js/dbhelper.js"></script>
+  <!-- Main javascript file -->
+  <script type="text/javascript" src="js/restaurant_info.js"></script>
+  <!-- Google Maps -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCD0iOQ-NO0l0VOGTRdtlljQlCsGLFfg7M&libraries=places&callback=initMap"></script>
+  <!-- End scripts -->
+
+</body>
+
+</html>
