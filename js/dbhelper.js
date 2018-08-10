@@ -9,22 +9,49 @@ class DBHelper {
    * Change this to restaurants.json file location on your server.
    */
   static get DATABASE_URL() {
-    const port = 1337 // Change this to your server port
+    const port = 1337;
     return `http://localhost:${port}/restaurants`;
+  }
+
+  /**
+   * Cache restaurant JSON in indexDB
+   */
+  static getLocalDatabase() {
+    return idb.open('restaurant-reviews-data', 1, (upgradeDb) => {
+      const store = upgradeDb.createObjectStore('restaurant-reviews', { keyPath: 'id' });
+    });
   }
 
   /**
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
-    fetch(DBHelper.DATABASE_URL).then(response => {
+    const restaurantsData = fetch(DBHelper.DATABASE_URL).then(response => {
+      if (!response.ok) { debugger; Error(response.statusText); }
       return response.json();
     })
     .then(restaurants => {
       callback(null, restaurants);
+      DBHelper.getLocalDatabase().then((db) => {
+        let tx = db.transaction('restaurant-reviews', 'readwrite');
+        let restaurantsStore = tx.objectStore('restaurant-reviews');
+
+        for(let restaurant of restaurants) {
+          restaurantsStore.put(restaurant);
+        }
+      })
     })
     .catch(error => {
-      callback(error, null);
+
+      // Use restaurant JSON from indexDB if fetch fails
+      DBHelper.getLocalDatabase().then((db) => {
+        const tx = db.transaction('restaurant-reviews');
+        const restaurantsStore = tx.objectStore('restaurant-reviews');
+
+        return restaurantsStore.getAll();
+      }).then(restaurants => {
+        callback(null, restaurants);
+      })
     });
   }
 

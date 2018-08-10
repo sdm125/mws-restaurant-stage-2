@@ -27,24 +27,6 @@ registerServiceWorker = () => {
 }
 
 /**
- * Cache restaurant JSON in indexDB
- */
- function openDatabase() {
-   // If the browser doesn't support service worker,
-   // we don't care about having a database
-   if (!navigator.serviceWorker) {
-     return Promise.resolve();
-   }
-
-   return idb.open('restaurant-reviews', 1, function(upgradeDb) {
-     var store = upgradeDb.createObjectStore('restaurant-reviews', {
-       keyPath: 'id'
-     });
-     store.createIndex('by-date', 'time');
-   });
- }
-
-/**
  * Fetch all neighborhoods and set their HTML.
  */
 fetchNeighborhoods = () => {
