@@ -28,20 +28,9 @@ gulp.task('minify-imgs', function() {
 // Tranpile ES6 to ES5, concat all js files, minify
 gulp.task('scripts-dist', function() {
   // Main
-  gulp.src(['js/dbhelper.js', 'js/idb.js', 'js/main.js'])
+  gulp.src(['js/**/*.js'])
     .pipe(sourcemaps.init())
-    .pipe(concat('main.min.js'))
-    .pipe(babel({ presets: ['es2015-script'] }))
-    .pipe(gulp.dest('./dist/js'))
-    .pipe(uglifyjs())
-    .pipe(gzip())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./dist/js'));
-
-  // Restaurant
-  gulp.src(['js/dbhelper.js', 'restaurant_info.js'])
-    .pipe(sourcemaps.init())
-    .pipe(concat('restaurant_info.min.js'))
+    .pipe(concat('scripts.min.js'))
     .pipe(babel({ presets: ['es2015-script'] }))
     .pipe(gulp.dest('./dist/js'))
     .pipe(uglifyjs())

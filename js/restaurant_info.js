@@ -4,20 +4,22 @@ let mapInfo;
 /**
  * Initialize Google map, called from HTML.
  */
-window.initMap = () => {
-  fetchRestaurantFromURL((error, restaurant) => {
-    if (error) { // Got an error!
-      console.error(error);
-    } else {
-      self.mapInfo = new google.maps.Map(document.querySelector('.map'), {
-        zoom: 16,
-        center: restaurant.latlng,
-        scrollwheel: false
-      });
-      fillBreadcrumb();
-      DBHelper.mapMarkerForRestaurant(self.restaurant, self.mapInfo);
-    }
-  });
+if(window.location.pathname === '/restaurant.html') {
+  window.initMap = () => {
+    fetchRestaurantFromURL((error, restaurant) => {
+      if (error) { // Got an error!
+        console.error(error);
+      } else {
+        self.mapInfo = new google.maps.Map(document.querySelector('.map'), {
+          zoom: 16,
+          center: restaurant.latlng,
+          scrollwheel: false
+        });
+        fillBreadcrumb();
+        DBHelper.mapMarkerForRestaurant(self.restaurant, self.mapInfo);
+      }
+    });
+  }
 }
 
 /**

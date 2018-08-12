@@ -2,7 +2,8 @@ let restaurants;
 let neighborhoods;
 let cuisines;
 let map;
-var markers = [];
+let markers = [];
+let home = window.location.pathname === '/';
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -57,7 +58,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
     const option = document.createElement('option');
     option.innerHTML = neighborhood;
     option.value = neighborhood;
-    select.append(option);
+    if (home) select.append(option);
   });
 }
 
@@ -85,7 +86,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
     const option = document.createElement('option');
     option.innerHTML = cuisine;
     option.value = cuisine;
-    select.append(option);
+    if (home) select.append(option);
   });
 }
 
