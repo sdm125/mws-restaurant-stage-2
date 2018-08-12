@@ -43,6 +43,7 @@ fetchNeighborhoods = () => {
 /**
  * Set neighborhoods HTML.
  */
+
 fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
   const select = document.getElementById('neighborhoods-select');
   neighborhoods.forEach(neighborhood => {
@@ -123,13 +124,17 @@ updateRestaurants = () => {
 /**
  * Add event listeners for filter dropdowns.
  */
-document.getElementById('neighborhoods-select').addEventListener('change', () => {
-    updateRestaurants();
-});
+if (document.getElementById('neighborhoods-select')) {
+  document.getElementById('neighborhoods-select').addEventListener('change', () => {
+      updateRestaurants();
+  });
+}
 
-document.getElementById('cuisines-select').addEventListener('change', () => {
-  updateRestaurants();
-});
+if (document.getElementById('cuisines-select')) {
+  document.getElementById('cuisines-select').addEventListener('change', () => {
+    updateRestaurants();
+  });
+}
 
 /**
  * Clear current restaurants, their HTML and remove their map markers.

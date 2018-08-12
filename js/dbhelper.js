@@ -42,7 +42,6 @@ class DBHelper {
       })
     })
     .catch(error => {
-
       // Use restaurant JSON from indexDB if fetch fails
       DBHelper.getLocalDatabase().then((db) => {
         const tx = db.transaction('restaurant-reviews');
