@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 /**
+ * Add title to maps iframe.
+ */
+window.addEventListener('load', () => {
+  document.querySelectorAll('iframe')[0].title = 'Restaurant map';
+});
+
+/**
  * Register Service Worker.
  */
 registerServiceWorker = () => {

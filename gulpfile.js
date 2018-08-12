@@ -15,7 +15,8 @@ gulp.task('dist', [
   'minify-imgs',
   'styles-dist',
   'scripts-dist',
-  'copy-readme'
+  'copy-readme',
+  'copy-manifest'
 ]);
 
 gulp.task('minify-imgs', function() {
@@ -81,5 +82,10 @@ gulp.task('copy-html', function() {
 
 gulp.task('copy-readme', function() {
   gulp.src('/README.md')
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('copy-manifest', function() {
+  gulp.src('./manifest.json')
     .pipe(gulp.dest('./dist'));
 });
