@@ -1,12 +1,10 @@
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open('restaurant-reviews-v3').then(function(cache) {
+    caches.open('restaurant-reviews-v4').then(function(cache) {
       return cache.addAll([
         '/',
-        'js/dbhelper.js',
-        'js/idb.js',
-        'js/main.js',
-        'js/restaurant_info.js',
+        '/restaurant.html',
+        'js/scripts.min.js',
         'css/styles.css',
         'img/1_400.jpg',
         'img/2_400.jpg',
@@ -36,7 +34,7 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('activate', function(event) {
-  caches.delete('restaurant-reviews-v2').then(function(cache){
+  caches.delete('restaurant-reviews-v3').then(function(cache){
     return cache;
   }).catch(function(err){
     return err;
@@ -45,7 +43,7 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request).then(function(response) {
+    caches.match(event.request, {ignoreSearch: true}).then(function(response) {
       return response || fetch(event.request);
     }).catch(function(err){
       return err;
