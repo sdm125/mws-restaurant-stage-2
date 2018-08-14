@@ -16,6 +16,7 @@ self.addEventListener('install', function(event) {
         'img/8_400.jpg',
         'img/9_400.jpg',
         'img/10_400.jpg',
+        'img/default_400.jpg',
         'img/1_800.jpg',
         'img/2_800.jpg',
         'img/3_800.jpg',
@@ -25,7 +26,8 @@ self.addEventListener('install', function(event) {
         'img/7_800.jpg',
         'img/8_800.jpg',
         'img/9_800.jpg',
-        'img/10_800.jpg'
+        'img/10_800.jpg',
+        'img/default_800.jpg',
       ]);
     }).catch(function(err){
       return err;

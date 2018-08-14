@@ -173,10 +173,18 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant, size) {
-    if(size === 'sm') {
-      return (`/img/${restaurant.photograph}_400.jpg`);
+    if (restaurant.photograph) {
+      if(size === 'sm') {
+        return (`/img/${restaurant.photograph}_400.jpg`);
+      }
+      return (`/img/${restaurant.photograph}_800.jpg`);
     }
-    return (`/img/${restaurant.photograph}_800.jpg`);
+    else {
+      if(size === 'sm') {
+        return (`/img/default_400.jpg`);
+      }
+      return (`/img/default_800.jpg`);
+    }
   }
 
   /**
